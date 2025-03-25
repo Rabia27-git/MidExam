@@ -3,11 +3,23 @@ import './index.css'
 
 function CountdownLightSwitch() {
     const [timer,setTimer]=useState(0)
+    let id;
 
     function handleTimer(){
-        setInterval(()=>{
-            setTimer(timer+1)
-        },1000)
+        if(timer===30){
+            clearInterval(id)
+        }
+
+        else{
+            id=setInterval(()=>{
+                setTimer(timer=>timer+1)
+            },1000)
+        }
+    }
+
+    function handleResetTimer(){
+        setTimer(0)
+        clearInterval(id)
     }
 
   return (
@@ -30,7 +42,7 @@ function CountdownLightSwitch() {
       <div className="timer" id="timerDisplay">{timer}</div>
       <div className="btn-group">
         <button id="startButton" onClick={handleTimer}>Start Timer</button>
-        <button id="resetButton">Reset Timer</button>  
+        <button id="resetButton" onClick={handleResetTimer}>Reset Timer</button>  
         {/* display none */}
       </div>
       <div className="message" id="messageArea"></div>
