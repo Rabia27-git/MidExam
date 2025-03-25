@@ -3,6 +3,7 @@ import './index.css'
 
 function CountdownLightSwitch() {
     const [timer,setTimer]=useState(0)
+    const [progress,setProgress]=useState(10)
     let id;
 
     function handleTimer(){
@@ -11,9 +12,16 @@ function CountdownLightSwitch() {
         }
 
         else{
+            let progress=document.getElementsByClassName("progress-bar")[0]
+            let div=document.createElement("div")
+            div.style.width="10px";
+            div.style.backgroundColor="green"
+            div.style.display="inline"
             id=setInterval(()=>{
                 setTimer(timer=>timer+1)
+                setProgress(div.style.width+"10px")
             },1000)
+
         }
     }
 
