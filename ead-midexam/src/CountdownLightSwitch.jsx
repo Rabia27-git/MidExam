@@ -4,6 +4,7 @@ import './index.css'
 function CountdownLightSwitch() {
     const [timer,setTimer]=useState(0)
     const [progress,setProgress]=useState(10)
+    const [theme,setTheme]=useState(true)
     let id;
 
     function handleTimer(){
@@ -30,14 +31,26 @@ function CountdownLightSwitch() {
         clearInterval(id)
     }
 
+    function handleToggle(){
+        let container=document.getElementById("bigContainer")
+        if(theme){
+            container.class.remove("light")
+            setTheme(false)
+        }
+        else{
+            container.class.add("light")
+            setTheme(true)
+        }
+    }
+
   return (
-    <div className="container">
+    <div className="container, light" id="bigContainer">
     <div className="header">
       <h1>Countdown & Light Switch</h1>
       <div className="toggle-container">
         <label className="toggle-switch">
           <input type="checkbox" id="themeToggle"/>
-          <span className="slider"></span>
+          <span className="slider" onClick={handleToggle}></span>
         </label>
         <span>Light Mode</span>
       </div>
